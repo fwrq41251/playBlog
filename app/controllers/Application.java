@@ -1,6 +1,10 @@
 package controllers;
 
+import global.Consts;
+
 import java.util.List;
+
+import com.avaje.ebean.Page;
 
 import models.Article;
 import play.mvc.Controller;
@@ -14,9 +18,11 @@ public class Application extends Controller {
 	 * render index page
 	 * @return
 	 */
-    public static Result index() {    	
-    	List<Article> articles = ArticleService.getAllArticles();
-        return ok(index.render("winry", articles));
+    public static Result index(int page) {    	
+    	Page<Article> result = ArticleService.getAllArticles(page);
+    	List<Article> articles = result.getList();
+    	int totalRows = result.getTotalRowCount();  
+        return ok(index.render("winry", articles, totalRows/Consts.PageSize));
     }
     
 }

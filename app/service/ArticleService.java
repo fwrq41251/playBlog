@@ -1,13 +1,13 @@
 package service;
 
-import java.util.List;
-
 import models.Article;
+
+import com.avaje.ebean.Page;
 
 public final class ArticleService {
 	
-	public static List<Article> getAllArticles() {
-		List<Article> result = Article.findAll();
+	public static Page<Article> getAllArticles(int page) {
+		Page<Article> result = Article.findByPage(page);
 		return result;
 	}
 	

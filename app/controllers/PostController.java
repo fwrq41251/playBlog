@@ -41,7 +41,7 @@ public class PostController extends Controller{
 	    	Article articlePo = new Article(post.title, post.content, "winry", new Date());
 	    	ArticleService.saveArticle(articlePo);
 	        return redirect(
-	            routes.Application.index()
+	            routes.Application.index(0)
 	        );
 	    }
 	}
