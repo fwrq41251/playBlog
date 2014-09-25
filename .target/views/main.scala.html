@@ -1,0 +1,37 @@
+@(articles: List[Article])
+<div class="container">
+
+	<div class="blog-header">
+		<h1 class="blog-title">Welcom to winry's Blog</h1>
+		<p class="lead blog-description">animation ,mahjong & programing sharing.</p>
+	</div>
+
+	<div class="row">
+
+		<div class="col-sm-8 blog-main">
+			@for(article <- articles) { 
+			<div class="blog-post">
+				<h2 class="blog-post-title">@article.title</h2>
+				<p class="blog-post-meta">@article.date.format("MMM dd yyyy")</p>
+				@Html(article.content)
+			</div>
+
+			}
+			<!-- /.blog-post -->
+
+			<ul class="pager">
+				<li><a href="#">Previous</a></li>
+				<li><a href="#">Next</a></li>
+			</ul>
+
+		</div>
+		<!-- /.blog-main -->
+
+		@views.html.sidebar()
+		<!-- /.blog-sidebar -->
+
+	</div>
+	<!-- /.row -->
+
+</div>
+<!-- /.container -->
