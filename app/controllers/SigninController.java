@@ -2,7 +2,7 @@ package controllers;
 
 
 import global.Consts;
-import models.User;
+import models.Users;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -41,7 +41,7 @@ public class SigninController extends Controller{
 	    public String password;
 	    
 	    public String validate() {
-		    if (User.authenticate(email, password) == null) {
+		    if (Users.authenticate(email, password) == null) {
 		      return "Invalid user or password";
 		    }
 		    return null;

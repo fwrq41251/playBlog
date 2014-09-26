@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import play.db.ebean.Model;
 
@@ -19,6 +20,7 @@ import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
 
 @Entity
+@Table(name="article")
 public class Article extends Model{
 
 	private static final long serialVersionUID = 5883982129768725148L;
@@ -48,7 +50,7 @@ public class Article extends Model{
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH })
 	@JoinColumn(name = "username", insertable = false, updatable = false)
-	public User author;
+	public Users author;
 
 	public Article(String titile, String content, String userName, Date date) {
 		this.title = titile;

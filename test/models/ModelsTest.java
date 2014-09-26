@@ -15,8 +15,8 @@ public class ModelsTest {
 
 	@Test
 	public void createAndRetrieveUser() {
-		new User("Bob", "secret","bob@gmail.com").save();
-		User bob = User.find.where().eq("email", "bob@gmail.com").findUnique();
+		new Users("Bob", "secret","bob@gmail.com").save();
+		Users bob = Users.find.where().eq("email", "bob@gmail.com").findUnique();
 		assertNotNull(bob);
 		assertEquals("Bob", bob.userName);
 	}
