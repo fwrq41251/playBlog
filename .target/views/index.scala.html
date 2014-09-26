@@ -1,4 +1,4 @@
-@(title: String, articles: List[Article], totalPages: Int)
+@(title: String, articles: List[Article], totalPages: Int, page: Int)
 
 <!DOCTYPE html>
 
@@ -6,7 +6,7 @@
 	@views.html.head(title)
 <body>
 	@views.html.nav()
-	@views.html.main(articles, totalPages)
+	@views.html.main(articles, totalPages, page)
 	@views.html.foot()
 </body>
 </html>
