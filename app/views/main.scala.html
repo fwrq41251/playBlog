@@ -1,4 +1,4 @@
-@(articles: List[Article], totalPages: Int)
+@(articles: List[Article], totalPages: Int, page: Int)
 <div class="container">
 
 	<div class="blog-header">
@@ -19,9 +19,10 @@
 			}
 			<!-- /.blog-post -->
 
-			<ul class="pager">
-				<li><a href="#">Previous</a></li>
-				<li><a href="#">Next</a></li>
+			<ul class="pagination">
+  				@for(i <- 1 to totalPages) {
+  				<li><a href=/?page=@(i-1)>@i</a></li>
+  				}
 			</ul>
 
 		</div>

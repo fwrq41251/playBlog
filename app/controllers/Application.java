@@ -22,7 +22,7 @@ public class Application extends Controller {
     	Page<Article> result = ArticleService.getAllArticles(page);
     	List<Article> articles = result.getList();
     	int totalRows = result.getTotalRowCount();  
-        return ok(index.render("winry", articles, totalRows/Consts.PageSize));
+        return ok(index.render("winry", articles, totalRows/Consts.PageSize+1, page+1));
     }
     
 }
