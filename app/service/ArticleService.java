@@ -15,5 +15,10 @@ public final class ArticleService {
 		article.save();
 		return true;
 	}
+	
+	public static boolean updateArticle(Article article) {
+		article.update();
+		return true;
+	}
 
 }

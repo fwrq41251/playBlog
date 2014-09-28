@@ -5,9 +5,10 @@ import global.Consts;
 
 import java.util.Date;
 
+import models.Article;
+
 import org.apache.commons.lang3.StringUtils;
 
-import models.Article;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -46,8 +47,38 @@ public class PostController extends Controller{
 	    }
 	}
 	
+	/**
+	 * render the edit page
+	 * @return
+	 */
+	public static Result renderEdit(long id) {
+		Article article = Article.findById(id);
+		return ok(views.html.post.edit.render(Form.form(Post.class), article));
+	}
+	
+	/**
+	 * save the change to article
+	 * @return
+	 */
+	public static Result saveChange() {
+		Form<Post> article = Form.form(Post.class).bindFromRequest();
+	    if (article.hasErrors()) {
+	        return badRequest(views.html.post.post.render(article));
+	    } else {
+	    	Post post = article.get();
+	    	Article articlePo = Article.findById(post.id);
+	    	articlePo.title = post.title;
+	    	articlePo.content = post.content;
+	    	ArticleService.updateArticle(articlePo);
+	        return redirect(
+	            routes.Application.index(0)
+	        );
+	    }
+	}
+	
 	public static class Post {
 
+		public long id;
 	    public String title;
 	    public String content;
 	    

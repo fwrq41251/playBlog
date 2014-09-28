@@ -15,3 +15,7 @@ POST	/signin						controllers.SigninController.authenticate()
 #Post page
 GET		/post						controllers.PostController.render()
 POST 	/post						controllers.PostController.post()
+
+#Edit page
+GET		/edit						controllers.PostController.renderEdit(id: Long)
+POST	/edit						controllers.PostController.saveChange()

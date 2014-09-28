@@ -1,4 +1,4 @@
-@(articles: List[Article], totalPages: Int, page: Int)
+@(articles: List[Article], totalPages: Int, page: Int, authenticated: String)
 <div class="container">
 
 	<div class="blog-header">
@@ -12,17 +12,30 @@
 			@for(article <- articles) { 
 			<div class="blog-post">
 				<h2 class="blog-post-title">@article.title</h2>
+				@if("true" == authenticated){
+				<a class="blog-spot-edit" href=/edit?id=@article.id><i class="icon-edit"></i></a>
+				}
 				<p class="blog-post-meta">@article.date.format("MMM dd yyyy")</p>
 				@Html(article.content)
+				<div class="clear"></div>
 			</div>
-
 			}
 			<!-- /.blog-post -->
 
 			<ul class="pagination">
+				@if(1 == page) {
+  				<li><a href="###">&laquo;</a></li>
+				} else {
+  				<li><a href=/?page=@(page-2)>&laquo;</a></li>
+				}
   				@for(i <- 1 to totalPages) {
-  				<li><a href=/?page=@(i-1)>@i</a></li>
+  				<li @if(i==page){class="active"}><a href=/?page=@(i-1)>@i</a></li>
   				}
+  				@if(totalPages == page) {
+  				<li><a href="###">&raquo;</a></li>
+				} else {
+  				<li><a href=/?page=@page>&raquo;</a></li>
+				}
 			</ul>
 
 		</div>

@@ -48,7 +48,7 @@ public class Article extends Model{
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH })
 	@JoinColumn(name = "username", insertable = false, updatable = false)
-	public User author;
+	public Users author;
 
 	public Article(String titile, String content, String userName, Date date) {
 		this.title = titile;
@@ -90,9 +90,14 @@ public class Article extends Model{
 		return article;
 	}
 
+	/**
+	 * find articles by id
+	 * @param page
+	 * @return
+	 */
 	public static Page<Article> findByPage(int page) {
 		PagingList<Article> pagingList =   
-				 find.findPagingList(Consts.PageSize);  
+				 find.orderBy("date desc").findPagingList(Consts.PageSize);  
 
 		// get the row count in the background...  
 		// ... otherwise it is fetched on demand  
@@ -102,5 +107,10 @@ public class Article extends Model{
 
 		Page<Article> result = pagingList.getPage(page);  
 		return result;
+	}
+	
+	public static Article findById(long id) {
+		Article article = find.byId(id);
+		return article;
 	}
 }
