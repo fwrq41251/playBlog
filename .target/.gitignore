@@ -1,2 +1,6 @@
 /views/
 /controllers/
+/enums/
+/global/
+/models/
+/service/

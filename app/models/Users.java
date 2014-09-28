@@ -3,10 +3,12 @@ package models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import play.db.ebean.Model;
 
 @Entity
+@Table(name="users")
 public class Users extends Model{
 
 	private static final long serialVersionUID = -3472379595309714837L;
