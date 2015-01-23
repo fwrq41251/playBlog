@@ -2,7 +2,7 @@ package enums;
 
 public enum EArticleStatus {
 
-	NULL("0",""), DDRAFT("01", "草稿"), ARCHIVE("02", "归档"), DELETED("03","已删除");
+	NULL("", ""), DDRAFT("m", "草稿"), ARCHIVE("p", "发布"), DELETED("d", "已删除");
 
 	private String text;
 	private String code;

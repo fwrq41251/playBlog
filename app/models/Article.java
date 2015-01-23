@@ -1,7 +1,5 @@
 package models;
 
-import global.Consts;
-
 import java.util.Date;
 import java.util.List;
 
@@ -19,9 +17,12 @@ import play.db.ebean.Model;
 import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
 
+import enums.EArticleStatus;
+import global.Consts;
+
 @Entity
-@Table(name="article")
-public class Article extends Model{
+@Table(name = "article")
+public class Article extends Model {
 
 	private static final long serialVersionUID = 5883982129768725148L;
 
@@ -37,13 +38,13 @@ public class Article extends Model{
 	@Column(name = "date")
 	public Date date;
 
-	//	public List<String> tags;
-	//	
-	//	@Column(name = "status")
-	//	public EArticleStatus status;
-	//	
-	//	@Column(name = "permission")
-	//	public EPermission permission;
+	// public List<String> tags;
+	//
+	@Column(name = "status")
+	public EArticleStatus status;
+	//
+	// @Column(name = "permission")
+	// public EPermission permission;
 
 	@Column(name = "username")
 	public String userName;
@@ -59,10 +60,12 @@ public class Article extends Model{
 		this.date = date;
 	}
 
-	public static Finder<Long,Article> find = new Finder<Long, Article>(Long.class, Article.class);
+	public static Finder<Long, Article> find = new Finder<Long, Article>(
+			Long.class, Article.class);
 
 	/**
 	 * get All articles
+	 * 
 	 * @return
 	 */
 	public static List<Article> findAll() {
@@ -71,17 +74,17 @@ public class Article extends Model{
 
 	/**
 	 * find articles by email
+	 * 
 	 * @param user
 	 * @return
 	 */
 	public static List<Article> findInvolving(String user) {
-		return find.where()
-				.eq("author.email", user)
-				.findList();
+		return find.where().eq("author.email", user).findList();
 	}
 
 	/**
 	 * a mock article
+	 * 
 	 * @return
 	 */
 	public static Article mockArticle() {
@@ -93,24 +96,25 @@ public class Article extends Model{
 	}
 
 	/**
-	 * find articles by id
+	 * find published articles
+	 * 
 	 * @param page
 	 * @return
 	 */
 	public static Page<Article> findByPage(int page) {
-		PagingList<Article> pagingList =   
-				 find.orderBy("date desc").findPagingList(Consts.PageSize);  
+		PagingList<Article> pagingList = find.where().eq("status", "p")
+				.orderBy("date desc").findPagingList(Consts.PageSize);
 
-		// get the row count in the background...  
-		// ... otherwise it is fetched on demand  
-		// ... when getTotalRowCount() or getTotalPageCount()   
-		// ... is called  
-		pagingList.getFutureRowCount();  
+		// get the row count in the background...
+		// ... otherwise it is fetched on demand
+		// ... when getTotalRowCount() or getTotalPageCount()
+		// ... is called
+		pagingList.getFutureRowCount();
 
-		Page<Article> result = pagingList.getPage(page);  
+		Page<Article> result = pagingList.getPage(page);
 		return result;
 	}
-	
+
 	public static Article findById(long id) {
 		Article article = find.byId(id);
 		return article;
