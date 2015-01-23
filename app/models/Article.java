@@ -1,5 +1,7 @@
 package models;
 
+import global.Consts;
+
 import java.util.Date;
 import java.util.List;
 
@@ -16,9 +18,6 @@ import play.db.ebean.Model;
 
 import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
-
-import enums.EArticleStatus;
-import global.Consts;
 
 @Entity
 @Table(name = "article")
@@ -41,7 +40,7 @@ public class Article extends Model {
 	// public List<String> tags;
 	//
 	@Column(name = "status")
-	public EArticleStatus status;
+	public String status;
 	//
 	// @Column(name = "permission")
 	// public EPermission permission;
