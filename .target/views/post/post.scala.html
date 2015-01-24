@@ -6,11 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <title>UMEDITOR 完整demo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="@routes.Assets.at("stylesheets/umeditor/umeditor.css")" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="@routes.Assets.at("javascripts/umeditor/jquery.min.js")"></script>
-    <script type="text/javascript" charset="utf-8" src="@routes.Assets.at("javascripts/umeditor/umeditor.config.js")"></script>
-    <script type="text/javascript" charset="utf-8" src="@routes.Assets.at("javascripts/umeditor/umeditor.min.js")"></script>
-    <script type="text/javascript" src="@routes.Assets.at("javascripts/umeditor/zh-cn.js")"></script>
+    <script type="text/javascript" charset="utf-8" src="@routes.Assets.at("thirdparty/ueditor/ueditor.config.js")"></script>
+    <script type="text/javascript" charset="utf-8" src="@routes.Assets.at("thirdparty/ueditor/_src/editor_api.js")"></script>
     
     <link href="@routes.Assets.at("stylesheets/post/post.css")" rel="stylesheet">
 </head>
@@ -30,7 +27,7 @@
 			</script>
 			<script type="text/javascript">
     			//实例化编辑器
-    			var um = UM.getEditor('myEditor');
+    			var um = UE.getEditor('myEditor');
 			</script>
 	
 			<div class="editor-buttons">
